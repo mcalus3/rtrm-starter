@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { Action } from './StateProvider';
 import { Actions } from '../../stateManagement/appState/appActions';
 import { State } from '../../stateManagement/StateModel';
+import { Dispatch } from 'redux';
 
 const packageJson = require('../../../package.json');
 const name = packageJson.name;
@@ -52,8 +53,10 @@ const NavBar = (props: Props) => {
 
 const mapStateToProps = (state: State) => ({});
 
-const mapDispatchToProps = (dispatch: any) => ({
-  onToggleDrawer: () => dispatch(Actions.ToggleDrawer())
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+  onToggleDrawer: () => {
+    dispatch(Actions.ToggleDrawer());
+  }
 });
 
 export default connect(

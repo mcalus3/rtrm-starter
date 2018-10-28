@@ -10,6 +10,7 @@ import { State } from '../../stateManagement/StateModel';
 import { Actions } from '../../stateManagement/DomainState/domainActions';
 import { Action } from '../appComponents/StateProvider';
 import { Paper, Typography, Button } from '@material-ui/core';
+import { Dispatch } from 'redux';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -64,7 +65,7 @@ const mapStateToProps = (state: State) => ({
   text: state.domainState.text
 });
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
   setText: (text: string) => {
     dispatch(Actions.changeText(text));
   }

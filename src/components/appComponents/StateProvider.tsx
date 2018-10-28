@@ -11,7 +11,7 @@ import { State } from '../../stateManagement/StateModel';
 import { DomainActions } from '../../stateManagement/DomainState/domainActions';
 import { AppActions } from '../../stateManagement/appState/appActions';
 
-const logger = (createLogger as any)();
+const logger = createLogger();
 
 let middleware = applyMiddleware(logger, thunk);
 

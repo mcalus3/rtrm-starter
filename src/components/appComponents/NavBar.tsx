@@ -28,7 +28,7 @@ const styles = (theme: Theme) =>
       marginRight: 20
     }
   });
-type Props = { onToggleDrawer: () => Action } & WithStyles<typeof styles>;
+type Props = { onToggleDrawer: () => void } & WithStyles<typeof styles>;
 
 const NavBar = (props: Props) => {
   const { classes } = props;
@@ -43,7 +43,7 @@ const NavBar = (props: Props) => {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="title" color="inherit">
+        <Typography variant="h6" color="inherit">
           {name}
         </Typography>
       </Toolbar>

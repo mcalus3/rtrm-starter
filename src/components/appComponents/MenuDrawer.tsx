@@ -26,7 +26,7 @@ const styles = {
 
 type Props = {
   openDrawer: boolean;
-  toggle: () => Action;
+  toggle: () => void;
 } & WithStyles<typeof styles>;
 
 const menuDrawer = (props: Props) => {

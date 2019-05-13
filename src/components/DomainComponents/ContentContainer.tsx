@@ -32,7 +32,7 @@ const styles = (theme: Theme) =>
     }
   });
 
-type Props = { text: string; setText: (text: string) => Action } & WithStyles<
+type Props = { text: string; setText: (text: string) => void } & WithStyles<
   typeof styles
 >;
 
@@ -50,7 +50,7 @@ const ContentContainer = (props: Props) => {
   return (
     <div className={classes.container}>
       <Paper className={classes.paper}>
-        <Typography variant="headline" component="h3">
+        <Typography variant="h5" component="h3">
           {props.text}
         </Typography>
         <Button variant="contained" onClick={changeText}>

@@ -28,6 +28,7 @@ const styles = (theme: Theme) =>
       marginRight: 20
     }
   });
+
 type Props = { onToggleDrawer: () => void } & WithStyles<typeof styles>;
 
 const NavBar = (props: Props) => {

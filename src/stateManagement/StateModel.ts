@@ -3,7 +3,7 @@ export const initialState = {
     drawerVisible: false
   },
   domainState: {
-    text: 'Press the button and look into the console'
+    text: 'Press the button'
   }
 };
 

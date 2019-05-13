@@ -1,7 +1,7 @@
 import { DomainActions, DomainActionTypes } from './domainActions';
 import { initialState, DomainState } from '../StateModel';
 
-const fractalReducer = (
+const domainReducer = (
   state: DomainState = initialState.domainState,
   action: DomainActions
 ) => {
@@ -15,4 +15,4 @@ const fractalReducer = (
   }
 };
 
-export default fractalReducer;
+export default domainReducer;

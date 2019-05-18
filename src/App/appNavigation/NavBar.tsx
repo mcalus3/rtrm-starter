@@ -13,7 +13,7 @@ import {
   WithStyles
 } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import appSlice, { AppActions } from './appReducer';
+import appSlice, { AppActions } from './navigationReducer';
 import { Dispatch } from 'redux';
 
 const packageJson = require('../../../package.json');

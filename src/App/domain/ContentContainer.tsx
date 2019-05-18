@@ -6,7 +6,7 @@ import {
   Theme
 } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { State } from '../../stateManagement/StateModel';
+import { State } from '../StateModel';
 import domainSlice, { DomainActions } from './domainReducer';
 import { Paper, Typography, Button } from '@material-ui/core';
 import { Dispatch } from 'redux';

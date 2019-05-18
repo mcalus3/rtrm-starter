@@ -1,10 +1,10 @@
 import * as React from 'react';
-import NavBar from './NavBar';
+import NavBar from './appNavigation/NavBar';
 import withThemeProvider from './ThemeProvider';
 import withStateProvider from './StateProvider';
-import MenuDrawer from './MenuDrawer';
+import MenuDrawer from './appNavigation/MenuDrawer';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
-import ContentContainer from '../DomainComponents/ContentContainer';
+import ContentContainer from './domain/ContentContainer';
 
 const styles = () =>
   createStyles({

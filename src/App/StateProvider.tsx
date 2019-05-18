@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import appSlice from './appReducer';
-import domainSlice from '../DomainComponents/domainReducer';
-import { State, initialState } from '../../stateManagement/StateModel';
+import appSlice from './appNavigation/navigationReducer';
+import domainSlice from './domain/domainReducer';
+import { State, initialState } from './StateModel';
 import { configureStore, getDefaultMiddleware } from 'redux-starter-kit';
 
 const reducer = {

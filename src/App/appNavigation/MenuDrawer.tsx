@@ -3,8 +3,8 @@ import MenuList from './MenuList';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 // @ts-ignore
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../../stateManagement/StateModel';
-import appSlice from './appReducer';
+import { State } from '../StateModel';
+import appSlice from './navigationReducer';
 import {
   SwipeableDrawer,
   List,

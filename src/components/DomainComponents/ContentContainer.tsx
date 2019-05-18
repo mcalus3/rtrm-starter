@@ -7,8 +7,7 @@ import {
 } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { State } from '../../stateManagement/StateModel';
-import { Actions } from '../../stateManagement/DomainState/domainActions';
-import { Action } from '../appComponents/StateProvider';
+import domainSlice, { DomainActions } from './domainReducer';
 import { Paper, Typography, Button } from '@material-ui/core';
 import { Dispatch } from 'redux';
 
@@ -65,9 +64,9 @@ const mapStateToProps = (state: State) => ({
   text: state.domainState.text
 });
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<DomainActions>) => ({
   setText: (text: string) => {
-    dispatch(Actions.changeText(text));
+    dispatch(domainSlice.actions.setText({ text: text }));
   }
 });
 

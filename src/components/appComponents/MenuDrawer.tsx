@@ -4,7 +4,7 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 // @ts-ignore
 import { useSelector, useDispatch } from 'react-redux';
 import { State } from '../../stateManagement/StateModel';
-import { Actions } from '../../stateManagement/appState/appActions';
+import appSlice from './appReducer';
 import {
   SwipeableDrawer,
   List,
@@ -31,7 +31,7 @@ const MenuDrawer: React.FC<Props> = ({ classes }: Props) => {
   );
 
   const dispatch = useDispatch();
-  const toggle = () => dispatch(Actions.ToggleDrawer());
+  const toggle = () => dispatch(appSlice.actions.toggleDrawer());
 
   return (
     <div>

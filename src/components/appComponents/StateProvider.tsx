@@ -1,21 +1,25 @@
 import * as React from 'react';
-import { createStore, Store } from 'redux';
+import { Store } from 'redux';
 import { Provider } from 'react-redux';
-import { combineReducers } from 'redux';
-import appReducer from '../../stateManagement/appState/appReducer';
-import domainReducer from '../../stateManagement/DomainState/domainReducer';
-import { State } from '../../stateManagement/StateModel';
-import { DomainActions } from '../../stateManagement/DomainState/domainActions';
-import { AppActions } from '../../stateManagement/appState/appActions';
+import appSlice from './appReducer';
+import domainSlice from '../DomainComponents/domainReducer';
+import { State, initialState } from '../../stateManagement/StateModel';
+import { configureStore, getDefaultMiddleware } from 'redux-starter-kit';
 
-const rootReducer = combineReducers<State>({
-  appState: appReducer,
-  domainState: domainReducer
-});
+const reducer = {
+  appState: appSlice.reducer,
+  domainState: domainSlice.reducer
+};
 
-const store = createStore(rootReducer, {}) as Store<State>;
+const middleware = getDefaultMiddleware();
+const preloadedState: State = initialState;
 
-export type Action = DomainActions | AppActions;
+const store = configureStore<State, any>({
+  reducer,
+  middleware,
+  devTools: process.env.NODE_ENV !== 'production',
+  preloadedState
+}) as Store<State>;
 
 function withStateProvider(Component: React.ComponentType) {
   function WithStateProvider(props: object) {

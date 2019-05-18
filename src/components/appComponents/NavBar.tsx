@@ -13,9 +13,7 @@ import {
   WithStyles
 } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import { Action } from './StateProvider';
-import { Actions } from '../../stateManagement/appState/appActions';
-import { State } from '../../stateManagement/StateModel';
+import appSlice, { AppActions } from './appReducer';
 import { Dispatch } from 'redux';
 
 const packageJson = require('../../../package.json');
@@ -52,11 +50,11 @@ const NavBar = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: State) => ({});
+const mapStateToProps = (state: any) => ({});
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => ({
   onToggleDrawer: () => {
-    dispatch(Actions.ToggleDrawer());
+    dispatch(appSlice.actions.toggleDrawer());
   }
 });
 

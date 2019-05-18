@@ -1,7 +1,8 @@
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+// @ts-ignore
+import { useDispatch } from 'react-redux';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import * as React from 'react';
@@ -12,9 +13,7 @@ import {
   Theme,
   WithStyles
 } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
-import appSlice, { AppActions } from './navigationReducer';
-import { Dispatch } from 'redux';
+import navigationSlice, { ToggleDrawerAction } from './navigationReducer';
 
 const packageJson = require('../../../package.json');
 const name = packageJson.name;
@@ -27,10 +26,13 @@ const styles = (theme: Theme) =>
     }
   });
 
-type Props = { onToggleDrawer: () => void } & WithStyles<typeof styles>;
+type Props = {} & WithStyles<typeof styles>;
 
-const NavBar = (props: Props) => {
-  const { classes } = props;
+const NavBar = ({ classes }: Props) => {
+  const dispatch = useDispatch();
+  const toggle: () => ToggleDrawerAction = () =>
+    dispatch(navigationSlice.actions.toggleDrawer());
+
   return (
     <AppBar position="static">
       <Toolbar>
@@ -38,7 +40,7 @@ const NavBar = (props: Props) => {
           className={classes.menuButton}
           color="inherit"
           aria-label="Menu"
-          onClick={props.onToggleDrawer}
+          onClick={toggle}
         >
           <MenuIcon />
         </IconButton>
@@ -50,15 +52,4 @@ const NavBar = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({});
-
-const mapDispatchToProps = (dispatch: Dispatch<AppActions>) => ({
-  onToggleDrawer: () => {
-    dispatch(appSlice.actions.toggleDrawer());
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(NavBar));
+export default withStyles(styles)(NavBar);

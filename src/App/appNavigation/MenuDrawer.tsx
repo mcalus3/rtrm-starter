@@ -3,8 +3,8 @@ import MenuList from './MenuList';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 // @ts-ignore
 import { useSelector, useDispatch } from 'react-redux';
-import { State } from '../StateModel';
-import appSlice from './navigationReducer';
+import { State } from '../StateProvider';
+import navigationSlice, { ToggleDrawerAction } from './navigationReducer';
 import {
   SwipeableDrawer,
   List,
@@ -25,13 +25,14 @@ const styles = {
 
 type Props = WithStyles<typeof styles>;
 
-const MenuDrawer: React.FC<Props> = ({ classes }: Props) => {
+const MenuDrawer = ({ classes }: Props) => {
   const isDrawerOpened = useSelector(
-    (state: State) => state.appState.drawerVisible
+    (state: State) => state.navigationState.drawerVisible
   );
 
   const dispatch = useDispatch();
-  const toggle = () => dispatch(appSlice.actions.toggleDrawer());
+  const toggle: () => ToggleDrawerAction = () =>
+    dispatch(navigationSlice.actions.toggleDrawer());
 
   return (
     <div>

@@ -1,20 +1,19 @@
 import { createSlice } from 'redux-starter-kit';
 
-export const appState = {
+export const navigationState = {
   drawerVisible: false
 };
-export type AppState = typeof appState;
+export type NavigationState = typeof navigationState;
 
-const appSlice = createSlice({
-  initialState: appState,
+const navigationSlice = createSlice({
+  initialState: navigationState,
   reducers: {
-    toggleDrawer: (state: AppState) => {
+    toggleDrawer: (state: NavigationState) => {
       state.drawerVisible = !state.drawerVisible;
     }
   }
 });
 
-type DrawerVisibleAction = { type: string };
-export type AppActions = DrawerVisibleAction;
+export type ToggleDrawerAction = { type: string };
 
-export default appSlice;
+export default navigationSlice;

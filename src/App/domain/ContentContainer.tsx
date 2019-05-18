@@ -5,11 +5,11 @@ import {
   withStyles,
   Theme
 } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
-import { State } from '../StateModel';
-import domainSlice, { DomainActions } from './domainReducer';
+import { State } from '../StateProvider';
+import domainSlice, { SetTextAction } from './domainReducer';
 import { Paper, Typography, Button } from '@material-ui/core';
-import { Dispatch } from 'redux';
+// @ts-ignore
+import { useSelector, useDispatch } from 'react-redux';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -31,15 +31,16 @@ const styles = (theme: Theme) =>
     }
   });
 
-type Props = { text: string; setText: (text: string) => void } & WithStyles<
-  typeof styles
->;
+type Props = {} & WithStyles<typeof styles>;
 
-const ContentContainer = (props: Props) => {
-  const { classes } = props;
+const ContentContainer = ({ classes }: Props) => {
+  const text = useSelector((state: State) => state.domainState.text);
+  const dispatch = useDispatch();
+  const setText: (text: string) => SetTextAction = text =>
+    dispatch(domainSlice.actions.setText({ text }));
 
   const changeText = () => {
-    props.setText(
+    setText(
       Math.random()
         .toString(36)
         .substring(7)
@@ -50,7 +51,7 @@ const ContentContainer = (props: Props) => {
     <div className={classes.container}>
       <Paper className={classes.paper}>
         <Typography variant="h5" component="h3">
-          {props.text}
+          {text}
         </Typography>
         <Button variant="contained" onClick={changeText}>
           Change Text
@@ -60,17 +61,4 @@ const ContentContainer = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: State) => ({
-  text: state.domainState.text
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<DomainActions>) => ({
-  setText: (text: string) => {
-    dispatch(domainSlice.actions.setText({ text: text }));
-  }
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(ContentContainer));
+export default withStyles(styles)(ContentContainer);

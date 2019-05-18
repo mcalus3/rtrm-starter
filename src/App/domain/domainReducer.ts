@@ -14,11 +14,9 @@ const domainSlice = createSlice({
   }
 });
 
-type SetTextAction = {
+export type SetTextAction = {
   type: string;
   payload: { text: string };
 };
-
-export type DomainActions = SetTextAction;
 
 export default domainSlice;

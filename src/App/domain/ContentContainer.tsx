@@ -4,12 +4,11 @@ import { Paper, Typography, Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    container: {
+    verticalContainer: {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      flexGrow: 1,
-      flexShrink: 1
+      flexGrow: 1
     },
     paper: {
       ...theme.mixins.gutters(),
@@ -37,7 +36,7 @@ export default () => {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.verticalContainer}>
       <Paper className={classes.paper}>
         <Typography variant="h5" component="h3">
           {text}

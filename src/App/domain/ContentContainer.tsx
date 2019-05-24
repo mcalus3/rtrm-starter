@@ -1,17 +1,8 @@
-import * as React from 'react';
-import {
-  createStyles,
-  WithStyles,
-  withStyles,
-  Theme
-} from '@material-ui/core/styles';
-import { State } from '../StateProvider';
-import domainSlice, { SetTextAction } from './domainReducer';
+import React, { useState } from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { Paper, Typography, Button } from '@material-ui/core';
-// @ts-ignore
-import { useSelector, useDispatch } from 'react-redux';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
       display: 'flex',
@@ -22,22 +13,20 @@ const styles = (theme: Theme) =>
     },
     paper: {
       ...theme.mixins.gutters(),
-      paddingTop: theme.spacing.unit * 2,
-      paddingBottom: theme.spacing.unit * 2,
+      paddingTop: theme.spacing(2),
+      paddingBottom: theme.spacing(2),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center'
     }
-  });
+  })
+);
 
-type Props = {} & WithStyles<typeof styles>;
+export default () => {
+  const classes = useStyles();
 
-const ContentContainer = ({ classes }: Props) => {
-  const text = useSelector((state: State) => state.domainState.text);
-  const dispatch = useDispatch();
-  const setText: (text: string) => SetTextAction = text =>
-    dispatch(domainSlice.actions.setText({ text }));
+  const [text, setText] = useState('Click the button');
 
   const changeText = () => {
     setText(
@@ -60,5 +49,3 @@ const ContentContainer = ({ classes }: Props) => {
     </div>
   );
 };
-
-export default withStyles(styles)(ContentContainer);

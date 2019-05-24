@@ -1,24 +1,18 @@
-import * as React from 'react';
-import {
-  withStyles,
-  WithStyles,
-  createStyles,
-  Theme
-} from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import React from 'react';
+import { List, ListItem, ListItemText } from '@material-ui/core';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const styles = (theme: Theme) =>
+const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     list: {
       backgroundColor: theme.palette.background.paper
     }
-  });
+  })
+);
 
-type Props = {} & WithStyles<typeof styles>;
+export default () => {
+  const classes = useStyles();
 
-function SimpleList({ classes }: Props) {
   return (
     <div className={classes.list}>
       <List component="nav">
@@ -38,6 +32,4 @@ function SimpleList({ classes }: Props) {
       </List>
     </div>
   );
-}
-
-export default withStyles(styles)(SimpleList);
+};
